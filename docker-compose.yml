@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+  pipeline_runner:
+    build: .
+    command: "run --pipeline e2e"
+    volumes:
+       - ./data:/home/kedro/data
+       - ./conf:/home/kedro/conf
+       - ./logs:/home/kedro/logs
+       - ./src:/home/kedro/src
+    environment:
+      - "GIT_PYTHON_REFRESH=quiet"
+  pipeline_visualizer:
+    build: .
+    command: "viz --host=0.0.0.0"
+    ports:
+      - "4141:4141"
+    environment:
+      - "GIT_PYTHON_REFRESH=quiet"

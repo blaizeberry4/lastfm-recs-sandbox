@@ -1,0 +1,35 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://kedro.readthedocs.io/en/stable/05_data/01_data_catalog.html
+archive:
+  type: etl.extras.datasets.tarfile.TarFileDataSet
+  filepath: data/01_raw/archive.tar.gz
+  compression: gz
+streams:
+  type: dask.ParquetDataSet
+  filepath: data/01_raw/streams.parquet
+  save_args:
+    overwrite: true
+users:
+  type: pandas.ParquetDataSet
+  filepath: data/01_raw/users.parquet
+sessions:
+  type: dask.ParquetDataSet
+  filepath: data/02_intermediate/sessions.parquet
+  save_args:
+    overwrite: true
+streams_column_null_counts:
+  type: json.JSONDataSet
+  filepath: data/03_insights/streams_column_null_counts.json
+streams_column_unique_counts:
+  type: json.JSONDataSet
+  filepath: data/03_insights/streams_column_unique_counts.json
+most_frequent_streamer:
+  type: json.JSONDataSet
+  filepath: data/03_insights/most_frequent_streamer.json
+most_played_tracks:
+  type: pandas.CSVDataSet
+  filepath: data/04_deliverables/most_played_tracks.tsv
+  save_args:
+    sep: "\t"

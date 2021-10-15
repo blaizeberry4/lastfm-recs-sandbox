@@ -1,0 +1,11 @@
+archive:
+  uri: http://mtg.upf.edu/static/datasets/last.fm/lastfm-dataset-1K.tar.gz
+  streams_filename: lastfm-dataset-1K/userid-timestamp-artid-artname-traid-traname.tsv
+  streams_md5: 64747b21563e3d2aa95751e0ddc46b68
+  users_filename: lastfm-dataset-1K/userid-profile.tsv
+  users_md5: c53608b6b445db201098c1489ea497df
+  compression: gz
+sessions:
+  n_longest: 50
+tracks:
+  n_most_played: 10
