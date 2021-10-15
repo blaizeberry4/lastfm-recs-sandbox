@@ -17,9 +17,18 @@ If we define a user ‘session’ to be composed of one or more songs played by 
 
 ## Running the Project
 
-- Install docker and docker-compose
+- Install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/)
 - Clone this repo with `git clone `
 - Enter the repo with `cd lastfm-recs-sandbox`
 - Run the pipeline with `docker-compose up pipeline_runner`
-    - This takes ~15 mins to complete with 4 cores and 8 GB memory allocated to Docker. Roughly 10 minutes is downloading the tarball containing the data from the remote hosting server.
-    - This will produce
+    - This takes ~15-20 mins to complete with 4 cores and 8 GB memory allocated to Docker. Roughly 10 minutes is downloading the tarball containing the data from the remote hosting server.
+    - Kedro will produce artifacts for every step in the pipeline in the `data` directory. The most played tracks for the longest sessions can be accessed at `data/04_deliverable/most_played_tracks.tsv`.
+- Run the pipeline visualizer with `docker-compose up pipeline_visualizer`
+    - This will provide a visualization component at `http://localhost:4141`
+
+## Next Steps
+
+- Add a robust [`pytest`](https://docs.pytest.org/en/6.2.x/) and [`hypothesis`](https://hypothesis.readthedocs.io/en/latest/) suite to prevent regressions catch unhandled edge cases.
+- Install [`dask[distributed]`](https://distributed.dask.org/en/stable/) and configure a non-local cluster client to enable horizontal scaling. Subclass and override the [`KedroContext`](https://kedro.readthedocs.io/en/latest/kedro.framework.context.KedroContext.html) that injects the cluster client into the Kedro runtime.
+- Use [`great-expectations`](https://greatexpectations.io/) for input and output data validation.
+- Use [`kedro-airflow`](https://github.com/quantumblacklabs/kedro-airflow) or [a similar tool](https://kedro.readthedocs.io/en/stable/10_deployment/01_deployment_guide.html) to convert the pipeline to a DAG in another deployment framework to enable more sophisticated orchestration.
