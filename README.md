@@ -4,7 +4,9 @@ This project leverages the LastFM Music Recommendation dataset available at http
 
 ## The Question
 
-If we define a user ‘session’ to be composed of one or more songs played by that user, where each song is started within 20 minutes of the previous song’s start time, create a list of the top 10 songs played in the top 50 longest sessions by tracks count. Deliver this as a tab-delimited file with the top 10 song names as well as their associated artist and play count within those sessions. 
+If we define a user ‘session’ to be composed of one or more songs played by that user, where each song is started within 20 minutes of the previous song’s start time, create a list of the top 10 songs played in the top 50 longest sessions by tracks count. Deliver this as a tab-delimited file with the top 10 song names as well as their associated artist and play count within those sessions.
+
+The result of this repo's attempt to answer this question can be produced via the steps below, but a copy is included for reference in the file `most_played_tracks.tsv`.
 
 ## Technologies Chosen
 
@@ -18,7 +20,7 @@ If we define a user ‘session’ to be composed of one or more songs played by 
 ## Running the Project
 
 - Install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/)
-- Clone this repo with `git clone `
+- Clone this repo with `git clone https://github.com/blaizeberry4/lastfm-recs-sandbox`
 - Enter the repo with `cd lastfm-recs-sandbox`
 - Run the pipeline with `docker-compose up pipeline_runner`
     - This takes ~15-20 mins to complete with 4 cores and 8 GB memory allocated to Docker. Roughly 10 minutes is downloading the tarball containing the data from the remote hosting server.
